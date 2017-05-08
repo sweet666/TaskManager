@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0"
+          xmlns:form="http://www.springframework.org/tags/form">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:output doctype-root-element="html" doctype-system="about:legacy-compat" omit-xml-declaration="true"/>
+
+    <html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+    <a href="tasks/finished">Завершенные задачи</a><br/>
+    <h2>Добавить задачу</h2>
+    <form method="POST" action="add" commandName="task">
+        <label>
+            <input type="text" size="20" name="name" placeholder="Название"><jsp:text/></input>
+            <input type="text" size="20" name="description" placeholder="Описание"><jsp:text/></input>
+            <input type="date" name="expire_date"><jsp:text/></input>
+        </label>
+        <button type="submit">Добавить</button>
+    </form>
+    <br/>
+    <h2>Задачи</h2>
+    <c:if test="${!empty taskList}">
+        <table class="data">
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Дата начала</th>
+                <th>Дата окончания</th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <c:forEach items="${taskList}" var="task">
+                <tr>
+                    <td>${task.name}</td>
+                    <td>${task.description}</td>
+                    <td>${task.start_date}</td>
+                    <td>${task.expire_date}</td>
+                    <td><a href="end/${task.id}">Завершить</a></td>
+                    <td><a href="edit/${task.id}">Редактировать</a></td>
+                    <td><a href="delete/${task.id}">Удалить</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+
+    </body>
+    </html>
+</jsp:root>
