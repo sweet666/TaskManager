@@ -18,4 +18,11 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyy");
         return format.format(date);
     }
+
+    public static String reverceDate(String date){
+        String year = date.substring(6);
+        String month = date.substring(3,5);
+        String day = date.substring(0, 2);
+        return year + "-" + month+ "-" + day;
+    }
 }

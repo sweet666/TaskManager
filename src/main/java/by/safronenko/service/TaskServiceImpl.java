@@ -35,11 +35,14 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.delete(id);
     }
 
-    @Override
     public void finishTask(int id) {
        Task task = taskRepository.findOne(id);
         task.setIs_end(1);
         taskRepository.saveAndFlush(task);
+    }
+
+    public Task getTask(int id) {
+        return taskRepository.findOne(id);
     }
 
 

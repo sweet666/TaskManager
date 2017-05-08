@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0"
+          xmlns:form="http://www.springframework.org/tags/form">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:output doctype-root-element="html" doctype-system="about:legacy-compat" omit-xml-declaration="true"/>
+
+    <html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+    <a href="/">Назад</a>
+    <h2>Редактировать задачу</h2>
+    <form method="POST" action="update/${task.id}" commandName="task">
+        <label>
+            <input type="text" size="20" name="name" value="${task.name}"><jsp:text/></input>
+            <input type="text" size="20" name="description" value="${task.description}"><jsp:text/></input>
+            <input type="date" name="expire_date" value="${task.expire_date}"><jsp:text/></input>
+        </label>
+        <button type="submit">Изменить</button>
+    </form>
+
+    </body>
+    </html>
+</jsp:root>

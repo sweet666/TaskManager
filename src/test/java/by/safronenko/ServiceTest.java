@@ -19,9 +19,13 @@ public class ServiceTest {
     @Test
     public void testService(){
 
-        Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyy");
-        System.out.println(format.format(date));
+        String date = "24.05.1989";
+
+        String year = date.substring(6);
+        String month = date.substring(3,5);
+        String day = date.substring(0, 2);
+
+        System.out.println(year + "." + month+ "." + day);
 
 
     }

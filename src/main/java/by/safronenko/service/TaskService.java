@@ -20,4 +20,6 @@ public interface TaskService {
 
     void finishTask(int id);
 
+    Task getTask(int id);
+
 }

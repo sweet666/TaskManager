@@ -5,10 +5,8 @@ import by.safronenko.service.TaskService;
 import by.safronenko.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -63,6 +61,27 @@ public class TaskController {
     public String finishTask(@PathVariable("taskId") int taskId) {
 
         taskService.finishTask(taskId);
+
+        return "redirect:/tasks";
+    }
+
+    @RequestMapping(value = "/get/{taskId}")
+    public ModelAndView main(@PathVariable("taskId") int taskId) {
+        ModelAndView modelAndView = new ModelAndView();
+        Task task = taskService.getTask(taskId);
+        task.setExpire_date(DateUtils.reverceDate(task.getExpire_date()));
+        modelAndView.addObject("task", task);
+        modelAndView.setViewName("edit");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/get/update/{taskId}", method = RequestMethod.POST)
+    public String updateTask(@ModelAttribute("task") Task task, @PathVariable("taskId") int taskId) {
+
+        task.setId(taskId);
+        task.setExpire_date(DateUtils.invertDate(task.getExpire_date()));
+        task.setStart_date(DateUtils.currentDate());
+        taskService.addTask(task);
 
         return "redirect:/tasks";
     }

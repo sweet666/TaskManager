@@ -40,7 +40,7 @@
                     <td>${task.start_date}</td>
                     <td>${task.expire_date}</td>
                     <td><a href="end/${task.id}">Завершить</a></td>
-                    <td><a href="edit/${task.id}">Редактировать</a></td>
+                    <td><a href="get/${task.id}">Редактировать</a></td>
                     <td><a href="delete/${task.id}">Удалить</a></td>
                 </tr>
             </c:forEach>
