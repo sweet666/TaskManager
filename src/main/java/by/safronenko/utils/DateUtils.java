@@ -1,8 +1,11 @@
 package by.safronenko.utils;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateUtils {
 
@@ -25,4 +28,15 @@ public class DateUtils {
         String day = date.substring(0, 2);
         return year + "-" + month+ "-" + day;
     }
+
+    public static int dateEquals(String date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd.MM.yyy");
+        Date date1 = format.parse(date);
+
+        Date date2 = format.parse(DateUtils.currentDate());
+
+        if (date1.getTime() < date2.getTime()) return 0;
+        else return 1;
+    }
+
 }

@@ -1,31 +1,22 @@
 package by.safronenko;
 
-import by.safronenko.entities.Task;
-import by.safronenko.service.TaskService;
+
+import by.safronenko.utils.DateUtils;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
+import java.text.ParseException;
 
 public class ServiceTest {
 
 
 
     @Test
-    public void testService(){
+    public void testService() throws ParseException {
 
-        String date = "24.05.1989";
+        String date = "08.04.2022";
 
-        String year = date.substring(6);
-        String month = date.substring(3,5);
-        String day = date.substring(0, 2);
+        System.out.println(DateUtils.dateEquals(date));
 
-        System.out.println(year + "." + month+ "." + day);
 
 
     }

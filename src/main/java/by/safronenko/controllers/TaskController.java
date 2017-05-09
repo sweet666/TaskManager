@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -22,12 +23,17 @@ public class TaskController {
     }
 
     @RequestMapping("/tasks")
-    public String listTasks(Map<String, Object> map) {
+    public ModelAndView listTasks() {
 
-        map.put("task", new Task());
-        map.put("taskList", taskService.findCurrentTasks());
+        ModelAndView modelAndView = new ModelAndView();
+        List<Task> list = taskService.findAllTasks();
+        modelAndView.addObject("taskList", list);
+        modelAndView.setViewName("tasks");
+        String title = "Задачи";
+        modelAndView.addObject("title", title);
 
-        return "tasks";
+
+        return modelAndView;
     }
 
     @RequestMapping("/tasks/finished")

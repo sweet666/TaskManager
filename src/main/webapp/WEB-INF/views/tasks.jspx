@@ -10,7 +10,14 @@
         <title>Test</title>
     </head>
     <body>
-    <a href="tasks/finished">Завершенные задачи</a><br/>
+    <table class="data">
+        <tr>
+            <th><a href="tasks/finished">Завершенные задачи</a></th>
+            <th><a href="tasks/today">Задачи на сегодня</a></th>
+            <th><a href="tasks/overdue">Просроченные задачи</a></th>
+        </tr>
+    </table>
+    <br/>
     <h2>Добавить задачу</h2>
     <form method="POST" action="add" commandName="task">
         <label>
@@ -21,7 +28,7 @@
         <button type="submit">Добавить</button>
     </form>
     <br/>
-    <h2>Задачи</h2>
+    <h2>${title}</h2>
     <c:if test="${!empty taskList}">
         <table class="data">
             <tr>
