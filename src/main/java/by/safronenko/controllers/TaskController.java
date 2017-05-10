@@ -5,9 +5,11 @@ import by.safronenko.service.TaskService;
 import by.safronenko.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -23,17 +25,36 @@ public class TaskController {
     }
 
     @RequestMapping("/tasks")
-    public ModelAndView listTasks() {
+    public String listTasks(Model model) {
 
-        ModelAndView modelAndView = new ModelAndView();
-        List<Task> list = taskService.findAllTasks();
-        modelAndView.addObject("taskList", list);
-        modelAndView.setViewName("tasks");
+        List<Task> list = taskService.findCurrentTasks();
+        model.addAttribute("taskList", list);
         String title = "Задачи";
-        modelAndView.addObject("title", title);
+        model.addAttribute("title", title);
 
+        return "tasks";
+    }
 
-        return modelAndView;
+    @RequestMapping("/overdue")
+    public String listOverdueTasks(Model model) throws ParseException {
+
+        List<Task> list = taskService.findOverdueTasks();
+        model.addAttribute("taskList", list);
+        String title = "Просроченные задачи";
+        model.addAttribute("title", title);
+
+        return "tasks";
+    }
+
+    @RequestMapping("/today")
+    public String listTodayTasks(Model model) throws ParseException {
+
+        List<Task> list = taskService.findTodayTasks();
+        model.addAttribute("taskList", list);
+        String title = "Задачи на сегодня";
+        model.addAttribute("title", title);
+
+        return "tasks";
     }
 
     @RequestMapping("/tasks/finished")
@@ -54,6 +75,7 @@ public class TaskController {
 
         return "redirect:/tasks";
     }
+
 
     @RequestMapping(value = "/delete/{taskId}")
     public String deleteTask(@PathVariable("taskId") int taskId) {

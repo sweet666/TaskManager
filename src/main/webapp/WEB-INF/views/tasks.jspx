@@ -12,9 +12,9 @@
     <body>
     <table class="data">
         <tr>
-            <th><a href="tasks/finished">Завершенные задачи</a></th>
-            <th><a href="tasks/today">Задачи на сегодня</a></th>
-            <th><a href="tasks/overdue">Просроченные задачи</a></th>
+            <th><a href="http://localhost:8080/tasks/finished">Завершенные задачи</a></th>
+            <th><a href="http://localhost:8080/today">Задачи на сегодня</a></th>
+            <th><a href="http://localhost:8080/overdue">Просроченные задачи</a></th>
         </tr>
     </table>
     <br/>

@@ -2,11 +2,15 @@ package by.safronenko.service;
 
 import by.safronenko.entities.Task;
 import by.safronenko.repositories.TaskRepository;
+import by.safronenko.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service("taskService")
 @Transactional
@@ -43,6 +47,28 @@ public class TaskServiceImpl implements TaskService {
 
     public Task getTask(int id) {
         return taskRepository.findOne(id);
+    }
+
+    public List<Task> findOverdueTasks() throws ParseException {
+        List<Task> listOverdueTasks = new ArrayList<>();
+        List<Task> taskList = taskRepository.findTasksByEnd(0);
+        for (Task task: taskList) {
+            if (DateUtils.dateEquals(task.getExpire_date())==0){
+                    listOverdueTasks.add(task);
+            }
+        }
+        return listOverdueTasks;
+    }
+
+    public List<Task> findTodayTasks() throws ParseException {
+        List<Task> listOverdueTasks = new ArrayList<>();
+        List<Task> taskList = taskRepository.findTasksByEnd(0);
+        for (Task task: taskList) {
+            if (Objects.equals(task.getExpire_date(), DateUtils.currentDate())){
+                listOverdueTasks.add(task);
+            }
+        }
+        return listOverdueTasks;
     }
 
 
