@@ -17,7 +17,7 @@
             <form id="logoutForm" method="POST" action="${contextPath}/logout">
                 <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
             </form>
-            <a>Welcome ${pageContext.request.userPrincipal.name} | </a>
+            <a>Welcome, ${pageContext.request.userPrincipal.name} | </a>
             <button onclick="document.forms['logoutForm'].submit()">Logout</button>
         </c:if><br/>
 
@@ -31,9 +31,10 @@
     <h2>Добавить задачу</h2>
     <form method="POST" action="add" commandName="task">
         <label>
-            <input type="text" size="20" name="name" placeholder="Название"><jsp:text/></input>
-            <input type="text" size="20" name="description" placeholder="Описание"><jsp:text/></input>
+
+            <textarea rows="3" cols="40" name="description" placeholder="Задача"><jsp:text/></textarea><br/><br/>
             <input type="date" name="expire_date"><jsp:text/></input>
+            <a>    Дата завершения</a><br/><br/>
             <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
         </label>
         <button type="submit">Добавить</button>
@@ -43,7 +44,6 @@
     <c:if test="${!empty taskList}">
         <table class="data">
             <tr>
-                <th>Название</th>
                 <th>Описание</th>
                 <th>Дата начала</th>
                 <th>Дата окончания</th>
@@ -53,7 +53,6 @@
             </tr>
             <c:forEach items="${taskList}" var="task">
                 <tr>
-                    <td>${task.name}</td>
                     <td>${task.description}</td>
                     <td>${task.start_date}</td>
                     <td>${task.expire_date}</td>
