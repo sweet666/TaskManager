@@ -16,19 +16,19 @@
             <h2>Create your account</h2>
             <spring:bind path="username">
                     <form:input type="text" path="username" placeholder="Username"
-                                autofocus="true"></form:input>
-                    <form:errors path="username"></form:errors>
+                                autofocus="true"></form:input><br/>
+                    <form:errors path="username"></form:errors><br/>
             </spring:bind>
 
             <spring:bind path="password">
-                    <form:input type="password" path="password" placeholder="Password"></form:input>
-                    <form:errors path="password"></form:errors>
+                    <form:input type="password" path="password" placeholder="Password"></form:input><br/>
+                    <form:errors path="password"></form:errors><br/>
             </spring:bind>
 
             <spring:bind path="passwordConfirm">
                     <form:input type="password" path="passwordConfirm"
-                                placeholder="Confirm your password"></form:input>
-                    <form:errors path="passwordConfirm"></form:errors>
+                                placeholder="Confirm your password"></form:input><br/>
+                    <form:errors path="passwordConfirm"></form:errors><br/>
             </spring:bind>
 
             <button type="submit">Submit</button>

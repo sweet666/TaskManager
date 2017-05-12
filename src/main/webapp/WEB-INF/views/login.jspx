@@ -17,13 +17,12 @@
         <h2>Log in</h2>
 
         <div>
-            <span>${message}</span>
+            <span>${message}</span><br/>
             <input name="username" type="text" placeholder="Username"
-                   autofocus="true"/>
-            <input name="password" type="password" placeholder="Password"/>
-            <span>${error}</span>
+                   autofocus="true"/><br/><br/>
+            <input name="password" type="password" placeholder="Password"/><br/>
+            <span>${error}</span><br/>
             <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-
             <button type="submit">Log In</button>
             <h4><a href="${contextPath}/registration">Create an account</a></h4>
         </div>
