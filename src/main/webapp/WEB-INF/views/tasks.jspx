@@ -24,6 +24,7 @@
             <input type="text" size="20" name="name" placeholder="Название"><jsp:text/></input>
             <input type="text" size="20" name="description" placeholder="Описание"><jsp:text/></input>
             <input type="date" name="expire_date"><jsp:text/></input>
+            <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
         </label>
         <button type="submit">Добавить</button>
     </form>
