@@ -15,14 +15,12 @@
     <c:if test="${!empty taskList}">
         <table class="data">
             <tr>
-                <th>Название</th>
                 <th>Описание</th>
                 <th>Дата начала</th>
                 <th>Дата окончания</th>
             </tr>
             <c:forEach items="${taskList}" var="task">
                 <tr>
-                    <td>${task.name}</td>
                     <td>${task.description}</td>
                     <td>${task.start_date}</td>
                     <td>${task.expire_date}</td>
