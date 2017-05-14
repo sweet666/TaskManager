@@ -10,9 +10,6 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="NAME")
-    private String name;
-
     @Column(name="DESCRIPTION")
     private  String description;
 
@@ -25,20 +22,15 @@ public class Task {
     @Column(name="EXPIRE_DATE")
     private  String expire_date;
 
+    @Column(name="USERNAME")
+    private String username;
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
@@ -71,5 +63,13 @@ public class Task {
 
     public void setExpire_date(String expire_date) {
         this.expire_date = expire_date;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

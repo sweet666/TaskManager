@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    @Query("select t from Task t where t.is_end = :is_end")
-    List<Task> findTasksByEnd(@Param("is_end") int is_end);
+    @Query("select t from Task t where t.is_end = :is_end and t.username = :username")
+    List<Task> findTasksByEnd(@Param("is_end") int is_end, @Param("username") String username);
 
 }

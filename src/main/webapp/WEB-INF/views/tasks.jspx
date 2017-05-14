@@ -31,7 +31,6 @@
     <h2>Добавить задачу</h2>
     <form method="POST" action="add" commandName="task">
         <label>
-
             <textarea rows="3" cols="40" name="description" placeholder="Задача"><jsp:text/></textarea><br/><br/>
             <input type="date" name="expire_date"><jsp:text/></input>
             <a>    Дата завершения</a><br/><br/>
