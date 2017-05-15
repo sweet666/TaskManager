@@ -26,13 +26,12 @@ public class TaskController {
     }
 
     @RequestMapping("/tasks")
-    public String listTasks(Model model, Locale locale) {
+    public String listTasks(Model model) {
 
         List<Task> list = taskService.findCurrentTasks();
         model.addAttribute("taskList", list);
         String title = "Задачи";
         model.addAttribute("title", title);
-        model.addAttribute(locale);
 
         return "tasks";
     }
