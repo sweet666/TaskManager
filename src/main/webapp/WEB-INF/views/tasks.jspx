@@ -9,14 +9,14 @@
 
     <html>
     <head>
-        <title>Test</title>
+        <title><spring:message code="tasks.title"/></title>
     </head>
     <body>
     <table class="data">
 
         <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <a>Welcome, ${pageContext.request.userPrincipal.name} | </a>
-            <a href="/logout">LogOut</a>
+            <a><spring:message code="tasks.welcome"/>, ${pageContext.request.userPrincipal.name} | </a>
+            <a href="/logout"><spring:message code="user.logout"/></a>
         </c:if><br/>
         <a href="?lang=ru">RU </a> | <a href="?lang=en">EN </a><br/><br/>
 
@@ -27,24 +27,25 @@
         </tr>
     </table>
     <br/>
-    <h2>Добавить задачу</h2>
+    <h2><spring:message code="tasks.add"/></h2>
     <form method="POST" action="add" commandName="task">
         <label>
-            <textarea rows="3" cols="40" name="description" placeholder="Задача"><jsp:text/></textarea><br/><br/>
+            <textarea rows="3" cols="40" name="description">
+                <jsp:text/></textarea><br/><br/>
             <input type="date" name="expire_date"><jsp:text/></input>
-            <a>    Дата завершения</a><br/><br/>
+            <a><spring:message code="tasks.expire"/></a><br/><br/>
             <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
         </label>
-        <button type="submit">Добавить</button>
+        <button type="submit"><spring:message code="tasks.submit"/></button>
     </form>
     <br/>
-    <h2>${title}</h2>
+    <h2><spring:message code="${title}"/></h2>
     <c:if test="${!empty taskList}">
         <table class="data">
             <tr>
-                <th>Описание</th>
-                <th>Дата начала</th>
-                <th>Дата окончания</th>
+                <th><spring:message code="tasks.description"/></th>
+                <th><spring:message code="tasks.start"/></th>
+                <th><spring:message code="tasks.expire"/></th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
@@ -54,9 +55,9 @@
                     <td>${task.description}</td>
                     <td>${task.start_date}</td>
                     <td>${task.expire_date}</td>
-                    <td><a href="end/${task.id}">Завершить</a></td>
-                    <td><a href="get/${task.id}">Редактировать</a></td>
-                    <td><a href="delete/${task.id}">Удалить</a></td>
+                    <td><a href="end/${task.id}"><spring:message code="tasks.end"/></a></td>
+                    <td><a href="get/${task.id}"><spring:message code="tasks.edit"/></a></td>
+                    <td><a href="delete/${task.id}"><spring:message code="tasks.delete"/></a></td>
                 </tr>
             </c:forEach>
         </table>

@@ -30,7 +30,7 @@ public class TaskController {
 
         List<Task> list = taskService.findCurrentTasks();
         model.addAttribute("taskList", list);
-        String title = "Задачи";
+        String title = "tasks.tasks";
         model.addAttribute("title", title);
 
         return "tasks";
@@ -41,7 +41,7 @@ public class TaskController {
 
         List<Task> list = taskService.findOverdueTasks();
         model.addAttribute("taskList", list);
-        String title = "Просроченные задачи";
+        String title = "tasks.overdue";
         model.addAttribute("title", title);
 
         return "tasks";
@@ -52,7 +52,7 @@ public class TaskController {
 
         List<Task> list = taskService.findTodayTasks();
         model.addAttribute("taskList", list);
-        String title = "Задачи на сегодня";
+        String title = "tasks.today";
         model.addAttribute("title", title);
 
         return "tasks";
