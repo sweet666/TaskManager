@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -25,12 +26,13 @@ public class TaskController {
     }
 
     @RequestMapping("/tasks")
-    public String listTasks(Model model) {
+    public String listTasks(Model model, Locale locale) {
 
         List<Task> list = taskService.findCurrentTasks();
         model.addAttribute("taskList", list);
         String title = "Задачи";
         model.addAttribute("title", title);
+        model.addAttribute(locale);
 
         return "tasks";
     }

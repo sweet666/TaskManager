@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Locale;
+
 @Controller
 public class UserController {
     @Autowired
@@ -46,14 +48,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, String error) {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
         return "login";
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public String logout() {
+
+        return "redirect:/login?logout";
+    }
+
+
 
 }

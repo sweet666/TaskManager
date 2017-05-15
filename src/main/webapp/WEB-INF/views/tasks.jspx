@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0"
-          xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags">
+          xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags"
+          xmlns:th="http://www.thymeleaf.org">
 
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
@@ -14,17 +15,15 @@
     <table class="data">
 
         <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-            </form>
             <a>Welcome, ${pageContext.request.userPrincipal.name} | </a>
-            <button onclick="document.forms['logoutForm'].submit()">Logout</button>
+            <a href="/logout">LogOut</a>
         </c:if><br/>
+        <a href="?lang=ru">RU </a> | <a href="?lang=en">EN </a><br/><br/>
 
         <tr>
-            <th><a href="http://localhost:8080/tasks/finished">Завершенные задачи</a></th>
-            <th><a href="http://localhost:8080/today">Задачи на сегодня</a></th>
-            <th><a href="http://localhost:8080/overdue">Просроченные задачи</a></th>
+            <th><a href="http://localhost:8080/tasks/finished"><spring:message code="tasks.finished"/></a></th>
+            <th><a href="http://localhost:8080/today"><spring:message code="tasks.today"/></a></th>
+            <th><a href="http://localhost:8080/overdue"><spring:message code="tasks.overdue"/></a></th>
         </tr>
     </table>
     <br/>
