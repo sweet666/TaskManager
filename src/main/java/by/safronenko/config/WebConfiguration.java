@@ -21,5 +21,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         messageSource.setBasenames("messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
+
+
     }
 }
