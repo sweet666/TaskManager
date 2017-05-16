@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0"
-          xmlns:form="http://www.springframework.org/tags/form">
+          xmlns:spring="http://www.springframework.org/tags" >
 
     <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
     <jsp:output doctype-root-element="html" doctype-system="about:legacy-compat" omit-xml-declaration="true"/>
 
     <html>
     <head>
-        <title>Test</title>
+        <title><spring:message code="tasks.title"/></title>
     </head>
     <body>
-    <a href="/">Назад</a>
-    <h2>Редактировать задачу</h2>
+    <a href="/"><spring:message code="tasks.back"/></a>
+    <h2><spring:message code="tasks.edittask"/></h2>
     <form method="POST" action="update/${task.id}" commandName="task">
         <label>
             <textarea rows="3" cols="40" name="description" value="${task.description}">${task.description}</textarea><br/><br/>
             <input type="date" name="expire_date" value="${task.expire_date}"><jsp:text/></input>
         </label>
-        <button type="submit">Изменить</button>
+        <button type="submit"><spring:message code="tasks.edit"/></button>
     </form>
 
     </body>
