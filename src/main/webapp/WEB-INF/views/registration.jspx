@@ -9,29 +9,31 @@
 
     <html>
     <head>
-        <title>Registration</title>
+        <title><spring:message code="tasks.title"/></title>
     </head>
     <body>
         <form:form method="POST" modelAttribute="userForm">
-            <h2>Create your account</h2>
+            <h2><spring:message code="user.registration"/></h2>
+
             <spring:bind path="username">
-                    <form:input type="text" path="username" placeholder="Username"
-                                autofocus="true"></form:input><br/>
-                    <form:errors path="username"></form:errors><br/>
+                <a><spring:message code="user.username"/></a><br/>
+                <form:input type="text" path="username" autofocus="true"></form:input><br/>
+                <form:errors path="username"></form:errors><br/>
             </spring:bind>
 
             <spring:bind path="password">
-                    <form:input type="password" path="password" placeholder="Password"></form:input><br/>
-                    <form:errors path="password"></form:errors><br/>
+                <a><spring:message code="user.password"/></a><br/>
+                <form:input type="password" path="password" ></form:input><br/>
+                <form:errors path="password"></form:errors><br/>
             </spring:bind>
 
             <spring:bind path="passwordConfirm">
-                    <form:input type="password" path="passwordConfirm"
-                                placeholder="Confirm your password"></form:input><br/>
-                    <form:errors path="passwordConfirm"></form:errors><br/>
+                <a><spring:message code="user.confirmpassword"/></a><br/>
+                <form:input type="password" path="passwordConfirm"></form:input><br/>
+                <form:errors path="passwordConfirm"></form:errors><br/>
             </spring:bind>
 
-            <button type="submit">Submit</button>
+            <button type="submit"><spring:message code="user.registration"/></button>
         </form:form>
     </body>
     </html>

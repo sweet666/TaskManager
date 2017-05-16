@@ -9,24 +9,25 @@
 
     <html>
     <head>
-        <title>Log In</title>
+        <title><spring:message code="tasks.title"/></title>
     </head>
     <body>
 
     <form method="POST" action="${contextPath}/login">
-        <h2>Log in</h2>
+
+        <h2><spring:message code="user.loginsystem"/></h2>
 
         <div>
             <span>${message}</span><br/>
-            <input name="username" type="text" placeholder="Username"
-                   autofocus="true"/><br/><br/>
-            <input name="password" type="password" placeholder="Password"/><br/>
+            <a><spring:message code="user.username"/></a><br/>
+            <input name="username" type="text" autofocus="true"/><br/><br/>
+            <a><spring:message code="user.password"/></a><br/>
+            <input name="password" type="password" /><br/>
             <span>${error}</span><br/>
             <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-            <button type="submit">Log In</button>
-            <h4><a href="${contextPath}/registration">Create an account</a></h4>
+            <button type="submit"><spring:message code="user.login"/></button>
+            <h4><a href="${contextPath}/registration"><spring:message code="user.registration"/></a></h4>
         </div>
-
     </form>
 
     </body>
