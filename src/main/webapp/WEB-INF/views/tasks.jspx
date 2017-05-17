@@ -10,59 +10,95 @@
     <html>
     <head>
         <title><spring:message code="tasks.title"/></title>
+
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="resources/css/common.css" rel="stylesheet"/>
     </head>
     <body>
-    <table class="data">
 
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <a><spring:message code="tasks.welcome"/>, ${pageContext.request.userPrincipal.name} | </a>
-            <a href="/logout"><spring:message code="user.logout"/></a>
-        </c:if><br/>
-        <a href="?lang=ru">RU </a> | <a href="?lang=en">EN </a><br/><br/>
-
-        <tr>
-            <th><a href="http://localhost:8080/tasks/finished"><spring:message code="tasks.finished"/></a></th>
-            <th><a href="http://localhost:8080/today"><spring:message code="tasks.today"/></a></th>
-            <th><a href="http://localhost:8080/overdue"><spring:message code="tasks.overdue"/></a></th>
-        </tr>
-    </table>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><spring:message code="tasks.title"/></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <p class="navbar-text pull-right">
+                    <a href="/logout"><spring:message code="user.logout"/></a>
+                </p>
+                <p class="navbar-text pull-right">
+                    ${pageContext.request.userPrincipal.name} |
+                </p>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/">About</a></li>
+                    <li><a href="/">Contact</a></li>
+                    <li>
+                        <li><a href="?lang=ru">RU </a></li>
+                        <li><a href="?lang=en">EN </a></li>
+                    </li>
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </div><!-- /.navbar -->
     <br/>
-    <h2><spring:message code="tasks.add"/></h2>
-    <form method="POST" action="add" commandName="task">
-        <label>
-            <textarea rows="3" cols="40" name="description">
-                <jsp:text/></textarea><br/><br/>
-            <input type="date" name="expire_date"><jsp:text/></input>
-            <a><spring:message code="tasks.expire"/></a><br/><br/>
-            <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-        </label>
-        <button type="submit"><spring:message code="tasks.submit"/></button>
-    </form>
-    <br/>
-    <h2><spring:message code="${title}"/></h2>
-    <c:if test="${!empty taskList}">
-        <table class="data">
-            <tr>
-                <th><spring:message code="tasks.description"/></th>
-                <th><spring:message code="tasks.start"/></th>
-                <th><spring:message code="tasks.expire"/></th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
-            <c:forEach items="${taskList}" var="task">
-                <tr>
-                    <td>${task.description}</td>
-                    <td>${task.start_date}</td>
-                    <td>${task.expire_date}</td>
-                    <td><a href="end/${task.id}"><spring:message code="tasks.end"/></a></td>
-                    <td><a href="get/${task.id}"><spring:message code="tasks.edit"/></a></td>
-                    <td><a href="delete/${task.id}"><spring:message code="tasks.delete"/></a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
+    <div class="container">
 
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="list-group">
+                <a href="http://localhost:8080/tasks" class="list-group-item">Мои задачи</a>
+                <a href="http://localhost:8080/today" class="list-group-item"><spring:message code="tasks.today"/></a>
+                <a href="http://localhost:8080/overdue" class="list-group-item"><spring:message code="tasks.overdue"/></a>
+                <a href="http://localhost:8080/tasks/finished" class="list-group-item"><spring:message code="tasks.finished"/></a>
+            </div>
+            <div class="well">
+                <h3><spring:message code="tasks.add"/></h3>
+                <form method="POST" action="add" commandName="task">
+                    <label>
+                 <textarea rows="8" cols="25" name="description"><jsp:text/></textarea>
+                        <a><spring:message code="tasks.expire"/></a>
+                        <input type="date" name="expire_date"><jsp:text/></input>
+                        <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+                    </label>
+                    <button class="btn btn-primary" type="submit"><spring:message code="tasks.submit"/></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-9">
+
+            <h2><spring:message code="${title}"/></h2>
+            <br/>
+            <div class="row">
+                <c:forEach items="${taskList}" var="task">
+                    <div class="col-6 col-sm-6 col-lg-4">
+                        <div class="well well-small">
+                            <h4>${task.description}</h4>
+                            <p class="text-success"><spring:message code="tasks.before"/> : ${task.expire_date}</p>
+                            <div class="btn-group">
+                                <a href="end/${task.id}" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></a>
+                                <a href="delete/${task.id}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="get/${task.id}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
     </body>
     </html>
 </jsp:root>
