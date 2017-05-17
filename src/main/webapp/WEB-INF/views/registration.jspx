@@ -10,31 +10,47 @@
     <html>
     <head>
         <title><spring:message code="tasks.title"/></title>
+
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="resources/css/common.css" rel="stylesheet"/>
     </head>
     <body>
-        <form:form method="POST" modelAttribute="userForm">
-            <h2><spring:message code="user.registration"/></h2>
+    <div class="container">
+
+        <form:form method="POST" modelAttribute="userForm" class="form-signin">
+            <h2 class="text-center"><spring:message code="user.registration"/></h2>
 
             <spring:bind path="username">
-                <a><spring:message code="user.username"/></a><br/>
-                <form:input type="text" path="username" autofocus="true"></form:input><br/>
-                <form:errors path="username"></form:errors><br/>
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <h4><spring:message code="user.username"/></h4>
+                    <form:input type="text" path="username" autofocus="true" class="form-control"></form:input>
+                    <form:errors path="username"></form:errors>
+                </div>
             </spring:bind>
 
             <spring:bind path="password">
-                <a><spring:message code="user.password"/></a><br/>
-                <form:input type="password" path="password" ></form:input><br/>
-                <form:errors path="password"></form:errors><br/>
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <h4><spring:message code="user.password"/></h4>
+                    <form:input type="password" path="password" class="form-control"></form:input>
+                    <form:errors path="password"></form:errors>
+                </div>
             </spring:bind>
 
             <spring:bind path="passwordConfirm">
-                <a><spring:message code="user.confirmpassword"/></a><br/>
-                <form:input type="password" path="passwordConfirm"></form:input><br/>
-                <form:errors path="passwordConfirm"></form:errors><br/>
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <h4><spring:message code="user.confirmpassword"/></h4>
+                    <form:input type="password" path="passwordConfirm" class="form-control"></form:input>
+                    <form:errors path="passwordConfirm"></form:errors>
+                </div>
             </spring:bind>
 
-            <button type="submit"><spring:message code="user.registration"/></button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="user.registration"/></button>
         </form:form>
+
+    </div>
+
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
     </body>
     </html>
 </jsp:root>
