@@ -1,34 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0"
-          xmlns:spring="http://www.springframework.org/tags">
+          xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags"
+          xmlns:th="http://www.thymeleaf.org">
 
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
     <jsp:output doctype-root-element="html" doctype-system="about:legacy-compat" omit-xml-declaration="true"/>
 
     <html>
     <head>
         <title><spring:message code="tasks.title"/></title>
+
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="resources/css/common.css" rel="stylesheet"/>
     </head>
     <body>
-    <a href="/"><spring:message code="tasks.back"/></a>
-    <h2><spring:message code="tasks.finished"/></h2>
-    <c:if test="${!empty taskList}">
-        <table class="data">
-            <tr>
-                <th><spring:message code="tasks.description"/></th>
-                <th><spring:message code="tasks.start"/></th>
-                <th><spring:message code="tasks.expire"/></th>
-            </tr>
-            <c:forEach items="${taskList}" var="task">
-                <tr>
-                    <td>${task.description}</td>
-                    <td>${task.start_date}</td>
-                    <td>${task.expire_date}</td>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
 
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><spring:message code="tasks.title"/></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <p class="navbar-text pull-right">
+                    <a href="/logout"><spring:message code="user.logout"/></a>
+                </p>
+                <p class="navbar-text pull-right">
+                    ${pageContext.request.userPrincipal.name} |
+                </p>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/">About</a></li>
+                    <li><a href="/">Contact</a></li>
+                    <li>
+                        <li><a href="?lang=ru">RU </a></li>
+                        <li><a href="?lang=en">EN </a></li>
+                    </li>
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </div><!-- /.navbar -->
+    <br/>
+    <div class="container">
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="list-group">
+                <a href="http://localhost:8080/tasks" class="list-group-item">Мои задачи</a>
+                <a href="http://localhost:8080/today" class="list-group-item"><spring:message code="tasks.today"/></a>
+                <a href="http://localhost:8080/overdue" class="list-group-item"><spring:message code="tasks.overdue"/></a>
+                <a href="http://localhost:8080/finished" class="list-group-item"><spring:message code="tasks.finished"/></a>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-9">
+
+            <h2><spring:message code="tasks.finished"/></h2>
+            <br/>
+            <table class="table table-hover">
+                <tr>
+                    <th><spring:message code="tasks.description"/></th>
+                    <th><spring:message code="tasks.start"/></th>
+                    <th><spring:message code="tasks.expire"/></th>
+                </tr>
+                <c:forEach items="${taskList}" var="task">
+                    <tr>
+                        <td>${task.description}</td>
+                        <td>${task.start_date}</td>
+                        <td>${task.expire_date}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
     </body>
     </html>
 </jsp:root>

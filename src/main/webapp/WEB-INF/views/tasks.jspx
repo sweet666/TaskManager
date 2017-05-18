@@ -54,7 +54,7 @@
                 <a href="http://localhost:8080/tasks" class="list-group-item">Мои задачи</a>
                 <a href="http://localhost:8080/today" class="list-group-item"><spring:message code="tasks.today"/></a>
                 <a href="http://localhost:8080/overdue" class="list-group-item"><spring:message code="tasks.overdue"/></a>
-                <a href="http://localhost:8080/tasks/finished" class="list-group-item"><spring:message code="tasks.finished"/></a>
+                <a href="http://localhost:8080/finished" class="list-group-item"><spring:message code="tasks.finished"/></a>
             </div>
             <div class="well">
                 <h3><spring:message code="tasks.add"/></h3>

@@ -58,7 +58,7 @@ public class TaskController {
         return "tasks";
     }
 
-    @RequestMapping("/tasks/finished")
+    @RequestMapping("/finished")
     public String listFinishedTasks(Map<String, Object> map) {
 
         map.put("task", new Task());
