@@ -9,9 +9,9 @@ public interface NoteService {
 
     List<Note> findAllNotes();
 
-    void addNote();
+    void addNote(Note note);
 
-    void  deleteNote();
+    void  deleteNote(int id);
 
     Note getNote(int id);
 }

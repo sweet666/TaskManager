@@ -1,6 +1,5 @@
 package by.safronenko.service;
 
-
 import by.safronenko.entities.Note;
 import by.safronenko.repositories.NoteRepository;
 import by.safronenko.utils.CurrentUser;
@@ -24,15 +23,16 @@ public class NoteServiceImpl implements NoteService {
         return noteRepository.findNotesByUser(currentUser.getCurrentUser());
     }
 
-    public void addNote() {
-
+    public void addNote(Note note) {
+        note.setUsername(currentUser.getCurrentUser());
+        noteRepository.save(note);
     }
 
-    public void deleteNote() {
-
+    public void deleteNote(int id) {
+        noteRepository.delete(id);
     }
 
     public Note getNote(int id) {
-        return null;
+        return noteRepository.findOne(id);
     }
 }
