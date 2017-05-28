@@ -9,25 +9,89 @@
 
     <html>
     <head>
-        <title>Менеджер задач</title>
+        <title><spring:message code="tasks.title"/></title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+        <link href="resources/css/common.css" rel="stylesheet"/>
     </head>
     <body>
 
-    <h2>Заметки</h2>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><spring:message code="tasks.title"/></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <p class="navbar-text pull-right">
+                    <a href="/logout"><spring:message code="user.logout"/></a>
+                </p>
+                <p class="navbar-text pull-right">
+                    ${pageContext.request.userPrincipal.name} |
+                </p>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/">About</a></li>
+                    <li><a href="/">Contact</a></li>
+                    <li>
+                        <li><a href="?lang=ru">RU </a></li>
+                        <li><a href="?lang=en">EN </a></li>
+                    </li>
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </div><!-- /.navbar -->
     <br/>
-    <table>
-        <tr>
-            <th>Заметка</th>
-        </tr>
-        <c:forEach items="${noteList}" var="note">
-            <tr>
-                <td>${note.noteText}</td>
+    <div class="container">
 
-            </tr>
-        </c:forEach>
-    </table>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="list-group">
+                <a href="http://localhost:8080/tasks" class="list-group-item">Мои задачи</a>
+                <a href="http://localhost:8080/today" class="list-group-item"><spring:message code="tasks.today"/></a>
+                <a href="http://localhost:8080/overdue" class="list-group-item"><spring:message code="tasks.overdue"/></a>
+                <a href="http://localhost:8080/finished" class="list-group-item"><spring:message code="tasks.finished"/></a>
+                <a href="http://localhost:8080/notes" class="list-group-item">Заметки</a>
+            </div>
+            <div class="well">
+                <h3>Добавить заметку</h3>
+                <form method="POST" action="addnote" commandName="note">
+                    <label>
+                        <textarea rows="8" cols="25" name="noteText"><jsp:text/></textarea>
+                    </label>
+                    <button class="btn btn-primary" type="submit"><spring:message code="tasks.submit"/></button>
+                </form>
+            </div>
+        </div>
 
+        <div class="col-xs-12 col-sm-9">
 
+            <h2>Заметки</h2>
+            <br/>
+            <div class="row">
+                <c:forEach items="${noteList}" var="note">
+                    <div class="col-6 col-sm-6 col-lg-4">
+                        <div class="well well-small">
+                            <h4>${note.noteText}</h4>
+                            <div class="btn-group">
+                                <a href="notes/delete/${note.id}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="notes/get/${note.id}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
     </html>
 </jsp:root>

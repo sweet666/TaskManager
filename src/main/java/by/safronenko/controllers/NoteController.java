@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -35,12 +36,30 @@ public class NoteController {
         return "redirect:/notes";
     }
 
-    @RequestMapping(value = "/notes/delete/{taskId}")
-    public String deleteNote(@PathVariable("taskId") int noteId) {
+    @RequestMapping(value = "/notes/delete/{noteId}")
+    public String deleteNote(@PathVariable("noteId") int noteId) {
 
         noteService.deleteNote(noteId);
 
-        return "redirect:/tasks";
+        return "redirect:/notes";
+    }
+
+    @RequestMapping(value = "/notes/get/{noteId}")
+    public ModelAndView getNote(@PathVariable("noteId") int noteId) {
+        ModelAndView modelAndView = new ModelAndView();
+        Note note = noteService.getNote(noteId);
+        modelAndView.addObject("note", note);
+        modelAndView.setViewName("editNote");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/notes/get/update/{noteId}", method = RequestMethod.POST)
+    public String updateTask(@ModelAttribute("note") Note note, @PathVariable("noteId") int noteId) {
+        note.setId(noteId);
+        noteService.addNote(note);
+
+        return "redirect:/notes";
     }
 
 
