@@ -69,11 +69,9 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group">
-                <a href="http://localhost:8080/tasks" class="list-group-item">Мои задачи</a>
-                <a href="http://localhost:8080/today" class="list-group-item"><spring:message code="tasks.today"/></a>
-                <a href="http://localhost:8080/overdue" class="list-group-item"><spring:message code="tasks.overdue"/></a>
-                <a href="http://localhost:8080/finished" class="list-group-item"><spring:message code="tasks.finished"/></a>
+                <a href="http://localhost:8080/tasks" class="list-group-item">Задачи</a>
                 <a href="http://localhost:8080/notes" class="list-group-item">Заметки</a>
+                <a href="#" class="list-group-item">Ссылки</a>
             </div>
             <div class="well">
                 <h3>Добавить заметку</h3>
