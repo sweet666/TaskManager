@@ -13,11 +13,15 @@ public class Link {
     @Column(name="TITLE")
     private  String title;
 
-    @Column(name="LINK")
-    private  String link;
+    @Column(name="DIRECTLINK")
+    private  String directLink;
 
     @Column(name="USERNAME")
     private String username;
+
+    @ManyToOne
+    @JoinColumn(name="LINKFOLDER_ID")
+    private LinkFolder linkFolder;
 
     public int getId() {
         return id;
@@ -35,19 +39,27 @@ public class Link {
         this.title = title;
     }
 
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public LinkFolder getLinkFolder() {
+        return linkFolder;
+    }
+
+    public void setLinkFolder(LinkFolder linkFolder) {
+        this.linkFolder = linkFolder;
+    }
+
+    public String getDirectLink() {
+        return directLink;
+    }
+
+    public void setDirectLink(String directLink) {
+        this.directLink = directLink;
     }
 }

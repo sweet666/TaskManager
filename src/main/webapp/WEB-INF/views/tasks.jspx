@@ -68,7 +68,7 @@
             <div class="list-group">
                 <a href="http://localhost:8080/tasks" class="list-group-item">Задачи</a>
                 <a href="http://localhost:8080/notes" class="list-group-item">Заметки</a>
-                <a href="#" class="list-group-item">Ссылки</a>
+                <a href="http://localhost:8080/links" class="list-group-item">Ссылки</a>
             </div>
             <div class="well">
                 <h3><spring:message code="tasks.add"/></h3>
