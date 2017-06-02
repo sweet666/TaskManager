@@ -55,7 +55,7 @@ public class NoteController {
     }
 
     @RequestMapping(value = "/notes/get/update/{noteId}", method = RequestMethod.POST)
-    public String updateTask(@ModelAttribute("note") Note note, @PathVariable("noteId") int noteId) {
+    public String updateNote(@ModelAttribute("note") Note note, @PathVariable("noteId") int noteId) {
         note.setId(noteId);
         noteService.addNote(note);
 
