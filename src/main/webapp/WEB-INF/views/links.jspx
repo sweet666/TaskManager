@@ -71,10 +71,9 @@
                 <h4>Папки</h4>
                 <ul>
                     <c:forEach items="${linkFolderList}" var="linkFolder">
-                        <li>${linkFolder.folder}<a href="#"><small>X</small></a></li>
+                        <li>${linkFolder.folder}<a href="links/deletefolder/${linkFolder.id}"><small>X</small></a></li>
                     </c:forEach>
                 </ul>
-                <br/>
                 <h4>Новая папка</h4>
                 <form method="POST" action="addlinkfolder" commandName="linkFolder">
                     <label>

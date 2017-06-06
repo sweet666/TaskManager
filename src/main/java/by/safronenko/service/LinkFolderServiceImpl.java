@@ -1,4 +1,4 @@
-package by.safronenko.service.userService;
+package by.safronenko.service;
 
 import by.safronenko.entities.LinkFolder;
 import by.safronenko.repositories.LinkFolderRepository;
@@ -22,6 +22,15 @@ public class LinkFolderServiceImpl implements LinkFolderService {
 
     public List<LinkFolder> findAllLinkFolders() {
         return linkFolderRepository.findLinkFolderByUsername(currentUser.getCurrentUser());
+    }
+
+    public void addLinkFolder(LinkFolder linkFolder) {
+        linkFolder.setUsername(currentUser.getCurrentUser());
+        linkFolderRepository.save(linkFolder);
+    }
+
+    public void deleteLinkFolder(int id) {
+        linkFolderRepository.delete(id);
     }
 
 }

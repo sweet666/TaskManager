@@ -68,4 +68,21 @@ public class LinkController {
 
         return "redirect:/links";
     }
+
+    @RequestMapping(value = "/addlinkfolder", method = RequestMethod.POST)
+    public String addLinkFolder(@ModelAttribute("linkFolder") LinkFolder linkFolder) {
+        linkFolderService.addLinkFolder(linkFolder);
+
+        return "redirect:/links";
+    }
+
+    @RequestMapping(value = "/links/deletefolder/{linkFolderId}")
+    public String deleteLinkFolder(@PathVariable("linkFolderId") int linkFolderId) {
+
+        linkFolderService.deleteLinkFolder(linkFolderId);
+
+        return "redirect:/links";
+    }
+
+
 }
