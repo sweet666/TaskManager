@@ -36,8 +36,9 @@ public class LinkController {
     }
 
     @RequestMapping(value = "/addlink", method = RequestMethod.POST)
-    public String addLink(@ModelAttribute("link") Link link) {
+    public String addLink(@ModelAttribute("link") Link link, @ModelAttribute("linkFolder") LinkFolder linkFolder) {
 
+        link.setLinkFolder(linkFolderService.getLinkFolder(linkFolder.getId()));
         linkService.addLink(link);
 
         return "redirect:/links";

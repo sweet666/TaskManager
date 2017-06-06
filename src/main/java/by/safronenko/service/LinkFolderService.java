@@ -12,4 +12,6 @@ public interface LinkFolderService {
     void addLinkFolder(LinkFolder linkFolder);
 
     void deleteLinkFolder(int id);
+
+    LinkFolder getLinkFolder(int id);
 }

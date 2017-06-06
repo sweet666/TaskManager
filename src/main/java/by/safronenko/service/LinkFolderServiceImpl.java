@@ -33,4 +33,8 @@ public class LinkFolderServiceImpl implements LinkFolderService {
         linkFolderRepository.delete(id);
     }
 
+    public LinkFolder getLinkFolder(int id) {
+        return linkFolderRepository.findOne(id);
+    }
+
 }
