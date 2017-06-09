@@ -72,7 +72,13 @@
             <div class="form-group">
                 <label>
                     <textarea rows="3" cols="35" name="title" value="${link.title}">${link.title}</textarea>
-                    <textarea rows="5" cols="35" name="directLink" value="${link.directLink}">${link.directLink}</textarea><br/><br/>
+                    <textarea rows="5" cols="35" name="directLink" value="${link.directLink}">${link.directLink}</textarea>
+                    <select name="linkFolder">
+                        <option disabled="null" selected="null">Папка: Общая</option>
+                        <c:forEach items="${linkFolderList}" var="linkFolder">
+                            <option value="${linkFolder.id}">${linkFolder.folder}</option>
+                        </c:forEach>
+                    </select>
                 </label>
                 <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="tasks.edit"/></button>
                 <h4 class="text-center"><a href="${contextPath}/links">Назад</a></h4>

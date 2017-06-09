@@ -56,7 +56,9 @@ public class LinkController {
     public ModelAndView getLink(@PathVariable("linkId") int linkId) {
         ModelAndView modelAndView = new ModelAndView();
         Link link = linkService.getLink(linkId);
+        List<LinkFolder> linkFolderList = linkFolderService.findAllLinkFolders();
         modelAndView.addObject("link", link);
+        modelAndView.addObject("linkFolderList", linkFolderList);
         modelAndView.setViewName("editLink");
 
         return modelAndView;

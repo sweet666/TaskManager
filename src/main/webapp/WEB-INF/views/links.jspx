@@ -64,7 +64,7 @@
                         <a>Ссылка</a>
                         <textarea rows="5" cols="25" name="directLink"><jsp:text/></textarea>
                         <select name="linkFolder">
-                            <option disabled="null" selected="null">Папка</option>
+                            <option disabled="null" selected="null">Папка: Общая</option>
                             <c:forEach items="${linkFolderList}" var="linkFolder">
                                 <option value="${linkFolder.id}">${linkFolder.folder}</option>
                             </c:forEach>
