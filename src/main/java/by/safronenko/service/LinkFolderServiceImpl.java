@@ -1,7 +1,9 @@
 package by.safronenko.service;
 
+import by.safronenko.entities.Link;
 import by.safronenko.entities.LinkFolder;
 import by.safronenko.repositories.LinkFolderRepository;
+import by.safronenko.repositories.LinkRepository;
 import by.safronenko.service.LinkFolderService;
 import by.safronenko.utils.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class LinkFolderServiceImpl implements LinkFolderService {
     private LinkFolderRepository linkFolderRepository;
 
     @Autowired
+    private LinkRepository linkRepository;
+
+    @Autowired
     private CurrentUser currentUser;
 
     public List<LinkFolder> findAllLinkFolders() {
@@ -30,6 +35,14 @@ public class LinkFolderServiceImpl implements LinkFolderService {
     }
 
     public void deleteLinkFolder(int id) {
+        
+        List<Link> links = linkRepository.findLinkByUsername(currentUser.getCurrentUser());
+
+        for (Link link: links) {
+            if (link.getLinkFolder().getId()==id)
+                linkRepository.delete(link);
+        }
+        
         linkFolderRepository.delete(id);
     }
 

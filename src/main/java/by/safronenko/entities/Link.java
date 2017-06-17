@@ -1,6 +1,5 @@
 package by.safronenko.entities;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -23,8 +22,8 @@ public class Link {
     @Column(name="USERNAME")
     private String username;
 
-    @ManyToOne(cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
-    @OnDelete(action= OnDeleteAction.CASCADE)
+    @ManyToOne(fetch=FetchType.LAZY)
+    //@OnDelete(action= OnDeleteAction.CASCADE)
     @JoinColumn(name="LINKFOLDER_ID")
     private LinkFolder linkFolder;
 

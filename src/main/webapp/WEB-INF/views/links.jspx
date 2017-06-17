@@ -99,12 +99,12 @@
                     <tr>
                         <td><strong>${link.title}</strong></td>
                         <td><strong><a href="${link.directLink}" target="_blank">Перейти</a></strong></td>
+                        <td>${link.linkFolder}</td>
                         <td><a href="links/delete/${link.id}"><small>Удалить</small></a><br/>
                         <a href="links/get/${link.id}"><small>Редактировать</small></a></td>
                     </tr>
                 </c:forEach>
             </table>
-
         </div>
 
     </div>

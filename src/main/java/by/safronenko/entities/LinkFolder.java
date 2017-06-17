@@ -1,6 +1,11 @@
 package by.safronenko.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="LINKFOLDER")
@@ -38,5 +43,10 @@ public class LinkFolder {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return folder;
     }
 }
