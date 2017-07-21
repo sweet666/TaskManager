@@ -14,4 +14,7 @@ public interface LinkRepository extends JpaRepository<Link, Integer> {
     @Query("select l from Link l where l.username = :username")
     List<Link> findLinkByUsername(@Param("username") String username);
 
+    @Query("select l from Link l where l.username = :username and l.linkFolder > 0")
+    List<Link> findLinkWithFolder(@Param("username") String username);
+
 }

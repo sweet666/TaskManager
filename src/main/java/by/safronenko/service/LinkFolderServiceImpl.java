@@ -34,17 +34,19 @@ public class LinkFolderServiceImpl implements LinkFolderService {
         linkFolderRepository.save(linkFolder);
     }
 
-    public void deleteLinkFolder(int id) {
-        
-        List<Link> links = linkRepository.findLinkByUsername(currentUser.getCurrentUser());
 
-        for (Link link: links) {
-            if (link.getLinkFolder().getId()==id)
+    public void deleteLinkFolder(int id){
+        
+        List<Link> links = linkRepository.findLinkWithFolder(currentUser.getCurrentUser());
+
+        for (Link link : links) {
+            if (link.getLinkFolder().getId() == id)
                 linkRepository.delete(link);
         }
-        
+
         linkFolderRepository.delete(id);
     }
+
 
     public LinkFolder getLinkFolder(int id) {
         return linkFolderRepository.findOne(id);

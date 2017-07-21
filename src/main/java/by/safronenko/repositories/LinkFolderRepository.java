@@ -13,4 +13,6 @@ public interface LinkFolderRepository extends JpaRepository<LinkFolder, Integer>
 
     @Query("select f from LinkFolder f where f.username = :username")
     List<LinkFolder> findLinkFolderByUsername(@Param("username") String username);
+
+
 }
