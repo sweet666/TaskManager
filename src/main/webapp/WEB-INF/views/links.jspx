@@ -51,9 +51,9 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group">
-                <a href="http://localhost:8080/tasks" class="list-group-item">Задачи</a>
-                <a href="http://localhost:8080/notes" class="list-group-item">Заметки</a>
-                <a href="http://localhost:8080/links" class="list-group-item">Ссылки</a>
+                <a href="http://salesforce-kiler.herokuapp.com/tasks" class="list-group-item">Задачи</a>
+                <a href="http://salesforce-kiler.herokuapp.com/notes" class="list-group-item">Заметки</a>
+                <a href="http://salesforce-kiler.herokuapp.com/links" class="list-group-item">Ссылки</a>
             </div>
             <div class="well">
                 <h3>Добавить ссылку</h3>
