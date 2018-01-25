@@ -1,6 +1,7 @@
 package by.safronenko.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 @Configuration
@@ -44,24 +47,38 @@ public class JpaConfiguration {
         return new DataSourceProperties();
     }
 
+//    @Bean
+//    public DataSource dataSource() {
+//        DataSourceProperties dataSourceProperties = dataSourceProperties();
+//        HikariDataSource dataSource = (HikariDataSource) DataSourceBuilder
+//                .create(dataSourceProperties.getClassLoader())
+//                .driverClassName(dataSourceProperties.getDriverClassName())
+//                .url(dataSourceProperties.getUrl())
+//                .username(dataSourceProperties.getUsername())
+//                .password(dataSourceProperties.getPassword())
+//                .type(HikariDataSource.class)
+//                .build();
+//        dataSource.setMaximumPoolSize(maxPoolSize);
+//        return dataSource;
+//    }
     @Bean
-    public DataSource dataSource() {
-        DataSourceProperties dataSourceProperties = dataSourceProperties();
-        HikariDataSource dataSource = (HikariDataSource) DataSourceBuilder
-                .create(dataSourceProperties.getClassLoader())
-                .driverClassName(dataSourceProperties.getDriverClassName())
-                .url(dataSourceProperties.getUrl())
-                .username(dataSourceProperties.getUsername())
-                .password(dataSourceProperties.getPassword())
-                .type(HikariDataSource.class)
-                .build();
-        dataSource.setMaximumPoolSize(maxPoolSize);
-        return dataSource;
+    public BasicDataSource dataSource() throws URISyntaxException {
+        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
+
+        return basicDataSource;
     }
 
-
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws URISyntaxException {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
         factoryBean.setPackagesToScan(new String[] {"by.safronenko.entities"});
