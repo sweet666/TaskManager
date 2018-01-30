@@ -67,14 +67,14 @@
 
         <form method="POST" action="update/${note.id}" commandName="note" class="form-signin">
 
-            <h2 class="text-center">Редактировать заметку</h2>
+            <h2 class="text-center"><spring:message code="notes.edit"/></h2>
 
             <div class="form-group">
                 <label>
                     <textarea rows="3" cols="35" name="noteText" value="${note.noteText}">${note.noteText}</textarea><br/><br/>
                 </label>
                 <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="tasks.edit"/></button>
-                <h4 class="text-center"><a href="${contextPath}/notes">Назад</a></h4>
+                <h4 class="text-center"><a href="${contextPath}/notes"><spring:message code="tasks.back"/></a></h4>
             </div>
 
         </form>

@@ -69,12 +69,12 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group">
-                <a href="http://salesforce-kiler.herokuapp.com/tasks" class="list-group-item">Задачи</a>
-                <a href="http://salesforce-kiler.herokuapp.com/notes" class="list-group-item">Заметки</a>
-                <a href="http://salesforce-kiler.herokuapp.com/links" class="list-group-item">Ссылки</a>
+                <a href="http://salesforce-kiler.herokuapp.com/tasks" class="list-group-item"><spring:message code="tasks.tasks"/></a>
+                <a href="http://salesforce-kiler.herokuapp.com/notes" class="list-group-item"><spring:message code="notes.notes"/></a>
+                <a href="http://salesforce-kiler.herokuapp.com/links" class="list-group-item"><spring:message code="links.links"/></a>
             </div>
             <div class="well">
-                <h3>Добавить заметку</h3>
+                <h3><spring:message code="notes.add"/></h3>
                 <form method="POST" action="addnote" commandName="note">
                     <label>
                         <textarea rows="8" cols="25" name="noteText"><jsp:text/></textarea>
@@ -82,6 +82,7 @@
                     <button class="btn btn-primary" type="submit"><spring:message code="tasks.submit"/></button>
                 </form>
             </div>
+            
         </div>
 
         <div class="col-xs-12 col-sm-9">

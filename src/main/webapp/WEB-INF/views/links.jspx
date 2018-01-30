@@ -51,9 +51,9 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group">
-                <a href="http://salesforce-kiler.herokuapp.com/tasks" class="list-group-item">Задачи</a>
-                <a href="http://salesforce-kiler.herokuapp.com/notes" class="list-group-item">Заметки</a>
-                <a href="http://salesforce-kiler.herokuapp.com/links" class="list-group-item">Ссылки</a>
+                <a href="http://salesforce-kiler.herokuapp.com/tasks" class="list-group-item"><spring:message code="tasks.tasks"/></a>
+                <a href="http://salesforce-kiler.herokuapp.com/notes" class="list-group-item"><spring:message code="notes.notes"/></a>
+                <a href="http://salesforce-kiler.herokuapp.com/links" class="list-group-item"><spring:message code="links.links"/></a>
             </div>
             <div class="well">
                 <h3>Добавить ссылку</h3>
@@ -64,7 +64,7 @@
                         <a>Ссылка</a>
                         <textarea rows="5" cols="25" name="directLink"><jsp:text/></textarea>
                         <select name="linkFolder">
-                            <option disabled="null" selected="null">Папка: Общая</option>
+                            <option disabled="null" selected="null"><spring:message code="links.folder.main"/></option>
                             <c:forEach items="${linkFolderList}" var="linkFolder">
                                 <option value="${linkFolder.id}">${linkFolder.folder}</option>
                             </c:forEach>
@@ -74,34 +74,34 @@
                 </form>
             </div>
             <div class="well">
-                <h4>Папки</h4>
+                <h4><spring:message code="links.folders"/></h4>
                 <ul>
                     <c:forEach items="${linkFolderList}" var="linkFolder">
                         <li>${linkFolder.folder}<a href="links/deletefolder/${linkFolder.id}"><small>X</small></a></li>
                     </c:forEach>
                 </ul>
-                <h4>Новая папка</h4>
+                <h4><spring:message code="links.new"/></h4>
                 <form method="POST" action="addlinkfolder" commandName="linkFolder">
                     <label>
                         <input type="text" size="15" name="folder"><jsp:text/></input>
                     </label>
-                    <button class="btn btn-small btn-info" type="submit">Создать</button>
+                    <button class="btn btn-small btn-info" type="submit"><spring:message code="links.create"/></button>
                 </form>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-9">
 
-            <h2>Мои ссылки</h2>
+            <h2><spring:message code="links.my"/></h2>
             <br/>
             <table class="table table-hover">
                 <c:forEach items="${linkList}" var="link">
                     <tr>
                         <td><strong>${link.title}</strong></td>
-                        <td><strong><a href="${link.directLink}" target="_blank">Перейти</a></strong></td>
+                        <td><strong><a href="${link.directLink}" target="_blank"><spring:message code="links.forward"/></a></strong></td>
                         <td>${link.linkFolder}</td>
-                        <td><a href="links/delete/${link.id}"><small>Удалить</small></a><br/>
-                        <a href="links/get/${link.id}"><small>Редактировать</small></a></td>
+                        <td><a href="links/delete/${link.id}"><small><spring:message code="tasks.delete"/></small></a><br/>
+                        <a href="links/get/${link.id}"><small><spring:message code="tasks.edit"/></small></a></td>
                     </tr>
                 </c:forEach>
             </table>

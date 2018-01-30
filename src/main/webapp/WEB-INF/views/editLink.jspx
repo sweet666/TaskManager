@@ -67,21 +67,21 @@
 
         <form method="POST" action="update/${link.id}" commandName="link" class="form-signin">
 
-            <h2 class="text-center">Редактировать ссылку</h2>
+            <h2 class="text-center"><spring:message code="links.edit"/></h2>
 
             <div class="form-group">
                 <label>
                     <textarea rows="3" cols="35" name="title" value="${link.title}">${link.title}</textarea>
                     <textarea rows="5" cols="35" name="directLink" value="${link.directLink}">${link.directLink}</textarea>
                     <select name="linkFolder">
-                        <option disabled="null" selected="null">Папка: Общая</option>
+                        <option disabled="null" selected="null"><spring:message code="links.folder.main"/></option>
                         <c:forEach items="${linkFolderList}" var="linkFolder">
                             <option value="${linkFolder.id}">${linkFolder.folder}</option>
                         </c:forEach>
                     </select>
                 </label>
                 <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="tasks.edit"/></button>
-                <h4 class="text-center"><a href="${contextPath}/links">Назад</a></h4>
+                <h4 class="text-center"><a href="${contextPath}/links"><spring:message code="tasks.back"/></a></h4>
             </div>
 
         </form>

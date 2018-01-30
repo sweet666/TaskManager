@@ -76,7 +76,7 @@
                     <nobr> <spring:message code="tasks.expire"/></nobr>
                 </label>
                 <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="tasks.edit"/></button>
-                <h4 class="text-center"><a href="${contextPath}/tasks">Назад</a></h4>
+                <h4 class="text-center"><a href="${contextPath}/tasks"><spring:message code="tasks.back"/></a></h4>
             </div>
 
         </form>
